@@ -3,16 +3,21 @@ Particle [] star;
 
 void setup()
 {
+  background(0);
   size(300, 300);
-  star = new Particle[500];
+  star = new Particle[150];
+
   for (int i = 0; i < star.length - 1; i++) {
-    star[i] = new NormalParticle();
+    if (i % 7 == 0) {
+      star[i] = new JumboParticle();
+    } else { 
+      star[i] = new NormalParticle();
+    }
   }
-  star[499] = new OddballParticle();
+  star[149] = new OddballParticle();
 }
 void draw()
 {
-  background(0);
   for (int i = 0; i < star.length; i++) {
     star[i].show();
     star[i].move();
@@ -37,7 +42,8 @@ class NormalParticle implements Particle
     y += Math.sin(angle)*speed;
   }
   public void show() {
-    ellipse((float)(x), (float)(y), 5, 5);
+    fill(255);
+    ellipse((float)(x), (float)(y), 10, 10);
   }
 }
 interface Particle
@@ -54,18 +60,22 @@ class OddballParticle implements Particle
   OddballParticle() {
     x = 200.0;
     y = 200.0;
-    angle = Math.random()*(Math.PI*2);
+    angle = 0.0;
   }
   public void move() {
-    x += Math.sin(angle);
-    y += Math.sin(angle);
+    angle += (Math.PI/6);
+    x = Math.cos(angle);
+    y = Math.sin(angle);
   }
   public void show() {
     fill(255, 0, 0);
     ellipse((float)x, (float)y, 20, 20);
   }
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-  //your code here
+  public void show() {
+    fill(255);
+    //ellipse((float)(x), (float)(y), 20, 20);
+  }
 }
