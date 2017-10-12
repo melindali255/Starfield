@@ -1,11 +1,10 @@
-//your code here
 Particle [] star;
 
 void setup()
 {
   background(0);
   size(300, 300);
-  star = new Particle[150];
+  star = new Particle[5];
 
   for (int i = 0; i < star.length - 1; i++) {
     if (i % 7 == 0) {
@@ -14,7 +13,7 @@ void setup()
       star[i] = new NormalParticle();
     }
   }
-  star[149] = new OddballParticle();
+  star[star.length-1] = new OddballParticle();
 }
 void draw()
 {
@@ -38,8 +37,18 @@ class NormalParticle implements Particle
     speed = Math.random()*10;
   }
   public void move() {
+    if (x <= 300 && x >= 0) {
     x += Math.cos(angle)*speed;
+    }
+    else {
+      x = 150.0;
+    }
+    if (y <= 300 && y >=0) {
     y += Math.sin(angle)*speed;
+    }
+    else {
+      y = 150.0;
+    }
   }
   public void show() {
     fill(255);
@@ -58,14 +67,12 @@ class OddballParticle implements Particle
   double angle;
 
   OddballParticle() {
-    x = 200.0;
-    y = 200.0;
+    x = 0.0;
+    y = 0.0;
     angle = 0.0;
   }
   public void move() {
-    angle += (Math.PI/6);
-    x = Math.cos(angle);
-    y = Math.sin(angle);
+    
   }
   public void show() {
     fill(255, 0, 0);
