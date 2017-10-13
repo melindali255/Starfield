@@ -72,7 +72,11 @@ class OddballParticle implements Particle
     angle = 0.0;
   }
   public void move() {
-    
+    x += 1;
+    y += 5;
+    if (y > 300) {
+      y = 0;
+    }
   }
   public void show() {
     fill(255, 0, 0);
