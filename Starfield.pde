@@ -87,6 +87,6 @@ class JumboParticle extends NormalParticle
 {
   public void show() {
     fill(255);
-    //ellipse((float)(x), (float)(y), 20, 20);
+    ellipse((float)(x), (float)(y), 15, 15);
   }
 }
